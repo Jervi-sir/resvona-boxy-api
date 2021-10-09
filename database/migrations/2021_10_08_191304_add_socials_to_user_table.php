@@ -14,7 +14,7 @@ class AddSocialsToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->longText('socials')->nullable('[]');
+            $table->longText('socials')->default('[]');
         });
     }
 
