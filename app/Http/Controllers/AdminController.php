@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Factory;
 use App\Models\User;
 use Faker\Provider\Uuid;
 use Illuminate\Support\Str;
@@ -32,15 +31,14 @@ class AdminController extends Controller
     {
         for($i = 0; $i < $request->amount; $i++)
         { 
-            $faker = Factory::create();
             $uuid_link = Str::uuid()->toString();
 
             do {
-                $user_name = 'boxy' . $faker->randomNumber($nbDigits = 6, $strict = false);
+                $user_name = 'boxy' . Str::random($length = 6);
             }
             while(User::where('name', $user_name)->count() != 0);
             
-            $user_password = 'delta' . $faker->randomNumber($nbDigits = 6, $strict = false);
+            $user_password = 'delta' . Str::random($length = 6);
             
             $user = new User();
             $user->name = $user_name;
