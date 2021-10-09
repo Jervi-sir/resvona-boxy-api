@@ -14,8 +14,8 @@ class AddDetailsToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('nickName')->default("set your username");
-            $table->text('bio')->default("set your bio");
+            $table->string('nickName')->nullable();
+            $table->text('bio')->nullable();
         });
     }
 
