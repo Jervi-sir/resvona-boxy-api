@@ -1,5 +1,3 @@
-![Product Api](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-validation.png)
-
 | :bell: Boxy api from Resvona |
 |:--------------------|
 |This project based on a product api with auth using laravel 8 Sanctum with Postman .|
