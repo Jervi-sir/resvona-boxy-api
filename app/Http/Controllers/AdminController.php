@@ -34,11 +34,11 @@ class AdminController extends Controller
             $uuid_link = Str::uuid()->toString();
 
             do {
-                $user_name = 'boxy' . Str::random($length = 6);
+                $user_name = 'boxy' . rand(99999,999999);
             }
             while(User::where('name', $user_name)->count() != 0);
             
-            $user_password = 'delta' . Str::random($length = 6);
+            $user_password = 'delta' . rand(99999,999999);
             
             $user = new User();
             $user->name = $user_name;
