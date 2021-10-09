@@ -1,29 +1,82 @@
 ![Product Api](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-validation.png)
 
-| :bell: Product Api with auth using laravel 8 Sanctum SPA with Postman |
+| :bell: Boxy api from Resvona |
 |:--------------------|
-|This project based on a product api with auth using laravel 8 Sanctum SPA with Postman .|
+|This project based on a product api with auth using laravel 8 Sanctum with Postman .|
+|Project will get deployed to Heroku,  followed with awake request, to awake server's dyno'|
+|will add vuejs to consume this api|
 
-| :bell: Product Update|
-|:--------------------|
-![Update](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-update-price.png)
-| :bell: Product Delete|
-|:--------------------|
-![Delete](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-delete.png)
-| :bell: Product Search|
-|:--------------------|
-![Search](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-search.png)
-| :bell: Access Token|
-|:--------------------|
-![Access Token](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-access-token.png)
-| :bell: Get product by token|
-|:--------------------|
-![Get Product by Token](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-get-product-by-token.png)
-| :bell: Login|
-|:--------------------|
-![Logged In](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-logged-in.png)
-| :bell: Log out|
-|:--------------------|
-![Logged out](https://github.com/Remonhasan/product-api-laravel-sanctum-spa/blob/main/api-logged-out.png)
+```
+http://localhost:8000/api/login
+POST
+name:
+password:
+```
 
-[Check Blog for Details](https://dev.to/remonhasan/laravel-8-rest-api-authentication-with-sanctum-ie8)
+```
+http://localhost:8000/api/user/{uuid}
+GET
+uuid:
+```
+
+```
+http://localhost:8000/api/logout
+POST
+with bearer api token
+```
+
+```
+http://localhost:8000/api/awake
+GET
+with bearer api token
+```
+
+```
+http://localhost:8000/api/edit
+GET
+with bearer api token
+```
+
+```
+http://localhost:8000/api/updateImage
+POST
+with bearer api token
+image:
+```
+
+```
+http://localhost:8000/api/updateBio
+POST
+with bearer api token
+bio:
+```
+
+```
+http://localhost:8000/api/updateName
+POST
+with bearer api token
+nickName:
+```
+
+```
+http://localhost:8000/api/addSocial
+POST
+with bearer api token
+platform:
+link:
+```
+
+```
+http://localhost:8000/api/editSocial
+POST
+with bearer api token
+id:
+link:
+```
+
+```
+http://localhost:8000/api/deleteSocial
+POST
+with bearer api token
+id:
+```

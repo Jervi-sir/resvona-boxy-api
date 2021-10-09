@@ -21,13 +21,13 @@ use App\Http\Controllers\ServerController;
 Route::get('/awake', [ServerController::class, 'awake']);
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/user/{uuid}', [UserController::class, 'show']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/edit', [UserController::class, 'editPage']);
+    Route::post('/logout', [AuthController::class, 'logout']);
     //Details
     Route::post('/updateImage', [UserController::class, 'image']);
     Route::post('/updateBio', [UserController::class, 'bio']);
@@ -41,5 +41,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 //admin things not from api
 //Route::post('/register', [AuthController::class, 'register']);
-
 
