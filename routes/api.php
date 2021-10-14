@@ -19,15 +19,13 @@ use App\Http\Controllers\ServerController;
 
 // what can a use do
 Route::get('/awake', [ServerController::class, 'awake']);
-
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('/user/{uuid}', [UserController::class, 'show']);
+Route::get('/preview/{uuid}', [UserController::class, 'show']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/edit', [UserController::class, 'editPage']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/edit', [UserController::class, 'editPage']);
     //Details
     Route::post('/updateImage', [UserController::class, 'image']);
     Route::post('/updateBio', [UserController::class, 'bio']);

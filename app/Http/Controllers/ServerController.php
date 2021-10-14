@@ -8,6 +8,9 @@ class ServerController extends Controller
 {
     public function awake()
     {
-        return response('server awaken', 200);
+        $response = [
+            'state' => 'server Awaken',
+        ];
+        return response($response, 200);
     }
 }

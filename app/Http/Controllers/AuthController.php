@@ -21,26 +21,27 @@ class AuthController extends Controller
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'remon hasan'
+                'message' => 'Please try again'
             ], 401);
         }
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [
-            'user' => $user,
+            'username' => $user->name,
             'token' => $token
         ];
-
         return response($response, 201);
     }
 
     public function logout(Request $request) {
-        Auth::guard('sanctum')->user()->tokens()->first()->delete();
+        $user = User::where('name', $request->username)->first();
 
-        return [
-            'message' => 'Logged out'
-        ];
+        $user->tokens->each(function($token, $key) {
+            $token->delete();
+        });
+    
+        return response()->json('Successfully logged out');
     }
 
 
