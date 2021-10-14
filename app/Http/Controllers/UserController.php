@@ -22,7 +22,7 @@ class UserController extends Controller
         'tiktok' =>'https://www.tiktok.com/',
         'email' =>'mailto:',
         'tel' =>'tel:',
-        'map' =>'map', '',
+        'map' =>'map',
         'applemusic' =>'',  //
         'whatsapp' =>'tel:',  //https://wa.m/21355
         'paypal' =>'',  //
@@ -38,7 +38,6 @@ class UserController extends Controller
         'behance' =>'',  //
         'dribbble' =>'',  //
         'snapchat' =>'',  //
-       
     ];
 
     private function userId($token) {

@@ -10,6 +10,12 @@ class PersonalAccessToken extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'tokenable',
+        'token',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'tokenable_id', 'id');
