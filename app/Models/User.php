@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function tokens()
     {
-        return $this->hasMany(PersonalAccessToken::class);
+        return $this->hasMany(PersonalAccessToken::class, 'tokenable');
     }
 
 }
