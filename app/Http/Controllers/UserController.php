@@ -44,7 +44,7 @@ class UserController extends Controller
         $token_array = explode(" ", $token);
         $token_id = $token_array[0];
         $token = PersonalAccessToken::find($token_id);
-        $user_id = $token->user()->first()->id;
+        $user_id = $token->tokenable_id;
 
         return $user_id;
     }
