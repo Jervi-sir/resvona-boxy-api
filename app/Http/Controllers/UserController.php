@@ -87,7 +87,7 @@ class UserController extends Controller
     //upload image
     public function image(Request $request)
     {
-        $image = $request->file('image');
+        $image = $request->image;
 
         $uploadedImageUrl = Cloudinary::upload($image->getRealPath())->getSecurePath();
         $user = User::find($this->userId($request->token));
