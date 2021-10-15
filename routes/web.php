@@ -18,9 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/show-users', [AdminController::class, 'showUsers'])->name('users.show');
-Route::get('/add-users', [AdminController::class, 'addUsers'])->name('users.add');
-Route::post('/create-users', [AdminController::class, 'createUsers'])->name('users.create');
+
+Route::middleware(['auth', 'role'])->group(function () {
+    Route::get('/show-users', [AdminController::class, 'showUsers'])->name('users.show');
+    Route::get('/add-users', [AdminController::class, 'addUsers'])->name('users.add');
+    Route::post('/create-users', [AdminController::class, 'createUsers'])->name('users.create');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
