@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\PersonalAccessToken;
 use Illuminate\Support\Facades\Auth;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class UserController extends Controller
 {
@@ -82,20 +81,6 @@ class UserController extends Controller
         ];
 
         return response($response, 201);
-    }
-
-    //upload image
-    public function image(Request $request)
-    {
-        $image = $request->image;
-
-        $uploadedImageUrl = Cloudinary::upload($image->getRealPath())->getSecurePath();
-        $user = User::find($this->userId($request->token));
-
-        $user->image = $uploadedImageUrl;
-        $user->save();
-
-        return response('image updated successfully', 201);
     }
 
     //update bio
@@ -203,6 +188,5 @@ class UserController extends Controller
 
         return response('social edited successfully', 201);
     }
-
 
 }
