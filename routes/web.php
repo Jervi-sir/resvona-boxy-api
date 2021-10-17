@@ -20,13 +20,15 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'role'])->group(function () {
-    Route::get('/show-users', [AdminController::class, 'showUsers'])->name('users.show');
     Route::get('/add-users', [AdminController::class, 'addUsers'])->name('users.add');
+    Route::get('/show-users', [AdminController::class, 'showUsers'])->name('users.show');
     Route::post('/create-users', [AdminController::class, 'createUsers'])->name('users.create');
+    Route::get('/hardCreatePage', [AdminController::class, 'hardCreatePage'])->name('users.hardCreatePage');
+    Route::post('/hardCreate', [AdminController::class, 'hardCreate'])->name('users.hardCreate');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'role'])->name('dashboard');
 
 require __DIR__.'/auth.php';

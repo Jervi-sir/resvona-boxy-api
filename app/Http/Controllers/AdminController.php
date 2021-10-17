@@ -24,7 +24,7 @@ class AdminController extends Controller
 
     public function createUsers(Request $request)
     {
-        for($i = 0; $i < $request->amount; $i++)
+        for($i = 0; $i < $request->quantity; $i++)
         { 
             $uuid_link = Str::uuid()->toString();
 
@@ -32,7 +32,6 @@ class AdminController extends Controller
                 $user_name = 'boxy' . rand(99999,999999);
             }
             while(User::where('name', $user_name)->count() != 0);
-            
             $user_password = 'delta' . rand(99999,999999);
             
             $user = new User();
@@ -48,6 +47,30 @@ class AdminController extends Controller
             $user->uuid = $uuid_link;
             $user->save();
         }
+        return view('dashboard');
+    }
+
+    public function hardCreatePage() 
+    {
+        return view('user.hardCreate');
+    }
+
+    public function hardCreate(Request $request) 
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->passNoHash = $request->password;
+        $user->password = Hash::make($request->password);
+
+        $user->nickName = $request->nickName;
+        $user->bio = $request->bio;
+        $user->socials = $request->socials;
+        $uuid_link = $request->link;
+        $user->uuid = $uuid_link;
+        $user->save();
+        
+        return back();
     }
 
 }
