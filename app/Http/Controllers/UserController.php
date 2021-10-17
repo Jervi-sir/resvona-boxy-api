@@ -127,9 +127,16 @@ class UserController extends Controller
 
         $social_array = json_decode($user->socials);
         $count_socials = count($social_array);
+        $last_id = 0;
+        //get the detail from array
+        foreach ($social_array as $key => $value) {
+            if ($key == $count_socials - 1) {
+                $last_id = $social_array[$key]->id;
+            }
+        }
 
         $json = [
-            'id' => $count_socials + 1,
+            'id' => $last_id + 1,
             'platform' => $platform,
             'link' => $link,
             'fullLink' => $this->socials[$platform] . $link,
