@@ -44,7 +44,7 @@
                                   </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach (\App\Models\User::all() as $user)
+                                    @foreach (\App\Models\User::orderBy('id', 'DESC')->get() as $user)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                           <div class="flex items-center">

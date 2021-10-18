@@ -22,6 +22,7 @@ Route::get('/awake', [ServerController::class, 'awake']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/preview/{uuid}', [UserController::class, 'show']);
 Route::post('/updateImage', [UserController::class, 'image']);
+Route::get('/previewOld/{uuid}', [UserController::class, 'showOld']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {

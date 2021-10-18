@@ -59,13 +59,20 @@ class AdminController extends Controller
     {
         $user = new User();
         $user->name = $request->name;
-        $user->email = $request->email;
         $user->passNoHash = $request->password;
         $user->password = Hash::make($request->password);
 
+        /*
         $user->nickName = $request->nickName;
         $user->bio = $request->bio;
         $user->socials = $request->socials;
+        */
+
+        $user->email = $user->name . '@resvona.com';
+        $user->nickName = 'set your usernmae';
+        $user->bio = 'set your bio';
+        $user->socials = '[]';
+
         $uuid_link = $request->link;
         $user->uuid = $uuid_link;
         $user->save();

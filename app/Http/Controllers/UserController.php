@@ -55,7 +55,6 @@ class UserController extends Controller
         $response = [
             'username' => $user->nickName,
             'bio' => $user->bio,
-            'image' => $user->image,
             'socials' => $user->socials,
             'uuid' => $user->uuid,
         ];
@@ -76,12 +75,39 @@ class UserController extends Controller
         $response = [
             'username' => $user->nickName,
             'bio' => $user->bio,
-            'image' => $user->image,
             'socials' => $user->socials,
         ];
 
         return response($response, 201);
     }
+
+    public function showOld($uuid) 
+    {
+
+        $firstOff = substr($uuid, 9);   //takeoff first 9 numbers
+        $split = explode("f8f7ee9", $firstOff); //into an array
+        $getId = $split[0];
+        $serverHashedId = sha1($getId);
+        $urlHashedId = $split[1];
+        
+        if($serverHashedId == $urlHashedId) 
+        {
+            $user = User::find($getId);
+            $response = [
+                'username' => $user->nickName,
+                'bio' => $user->bio,
+                'socials' => $user->socials,
+            ];
+        }
+        else
+        {
+            return response('error', 404);
+        }
+
+        return response($response, 201);
+
+    }
+
 
     //update bio
     public function bio(Request $request) {
@@ -188,5 +214,7 @@ class UserController extends Controller
 
         return response('social edited successfully', 201);
     }
+
+
 
 }
