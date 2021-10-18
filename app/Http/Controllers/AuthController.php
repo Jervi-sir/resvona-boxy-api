@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\PersonalAccessToken;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,11 +34,10 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request) {
-        $user = User::where('name', $request->username)->first();
 
-        $user->tokens->each(function($token, $key) {
-            $token->delete();
-        });
+        [$id, $body] = explode('|', $request->token, 2); 
+        $token = PersonalAccessToken::find($id);
+        $token->delete();
     
         return response()->json('Successfully logged out');
     }
