@@ -83,7 +83,16 @@ class UserController extends Controller
 
     public function showOld($uuid) 
     {
+        if(strlen($uuid) < 20) {
+            $user = User::find($uuid);
+            $response = [
+                'username' => $user->nickName,
+                'bio' => $user->bio,
+                'socials' => $user->socials,
+            ];
 
+            return response($response, 201);
+        }
         $firstOff = substr($uuid, 9);   //takeoff first 9 numbers
         $split = explode("f8f7ee9", $firstOff); //into an array
         $getId = $split[0];
